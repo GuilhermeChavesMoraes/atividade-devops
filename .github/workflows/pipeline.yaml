@@ -3,7 +3,7 @@ name: Pipeline DevOps
 on:
   push:
     branches:
-      - main
+      - principal
 
 jobs:
   build:
