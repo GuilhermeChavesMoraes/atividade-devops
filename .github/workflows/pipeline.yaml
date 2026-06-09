@@ -23,3 +23,17 @@ jobs:
 
       - name: Build Docker Image
         run: docker build -t aula-devops .
+
+      - name: Login Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build Image
+        run: |
+          docker build -t guilhermechavesmoraes/aula-devops:1.0.${{ github.run_number }} .
+
+      - name: Push Image
+        run: |
+          docker push guilhermechavesmoraes/aula-devops:1.0.${{ github.run_number }}
